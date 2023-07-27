@@ -5,6 +5,7 @@ function App() {
   const [mail, setMail] = useState("");
   const [fname, setFName] = useState("");
   const [lname, setLName] = useState("");
+  const [len, setLen] = useState();
   const [password, setPassword] = useState("");
   const alpha = "abcdefghijklmnopqrstuvwxyz";
   const caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -19,15 +20,19 @@ function App() {
     setLName(event.target.value);
   }
 
+  function handleLength(event) {
+    setLen(event.target.value);
+  }
+
   function display(event) {
     if (fname !== "" && lname !== "") {
-      //event.preventDefault();
       setMail("Your Mail :  " + fname + lname + "@gmail.com");
       setFName("");
       setLName("");
+      setLen("");
       let nums = "";
       var i;
-      for (i = 0; i < 10; ) {
+      for (i = 0; i < len; ) {
         let id1 = Math.floor(Math.random() * 4);
         let val;
         let idx;
@@ -74,6 +79,13 @@ function App() {
           type="text"
           placeholder="Last Name"
           value={lname}
+          required
+        />
+        <input
+          onChange={handleLength}
+          type="text"
+          placeholder="Enter length of Password"
+          value={len}
           required
         />
         <button onClick={display}>Submit</button>
